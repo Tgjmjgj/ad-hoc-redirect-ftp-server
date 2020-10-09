@@ -7,7 +7,7 @@ const externalIP = process.env.EXTERNAL_IP || '0.0.0.0';
 
 const FtpSrv = require('ftp-srv');
 const ftpServer = new FtpSrv({
-    url: `ftp://${externalIP}:${port}`,
+    url: `ftp://0.0.0.0:${port}`,
     anonymous: true,
     pasv_url: `ftp://${externalIP}`,
     logLevel: 'trace',
