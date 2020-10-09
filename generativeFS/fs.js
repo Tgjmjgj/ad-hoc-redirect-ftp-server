@@ -1,5 +1,6 @@
 const path = require('path');
 const string2fileStream = require('string-to-file-stream');
+const extractUrlFromPath = require('./utils');
 const getStat = require('./stat');
 
 class GenerativeFS {
@@ -36,8 +37,7 @@ class GenerativeFS {
     }
 
     read(fileName, { start = undefined } = {}) {
-        const url = fileName.slice(2, fileName.length - 5);
-        console.log('----------------------------------url: ', url);
+        const url = extractUrlFromPath(fileName);
         const fileContent = `<script>window.open("${url}")</script>\n`;
         return Promise.resolve({
             stream: string2fileStream(fileContent),
