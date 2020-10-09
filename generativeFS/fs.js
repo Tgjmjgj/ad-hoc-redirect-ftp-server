@@ -1,6 +1,6 @@
 const path = require('path');
 const string2fileStream = require('string-to-file-stream');
-const extractUrlFromPath = require('./utils');
+const buildUrl = require('./buildUrl');
 const getStat = require('./stat');
 
 class GenerativeFS {
@@ -26,7 +26,7 @@ class GenerativeFS {
     }
 
     chdir(path = '.') {
-        return Promise.reject(`Can't change directory to "${path}"`);
+        return Promise.resolve('Directory successfully changed');
     }
 
     write(fileName, {append = false, start = undefined} = {}) {
@@ -37,10 +37,9 @@ class GenerativeFS {
     }
 
     read(fileName, { start = undefined } = {}) {
-        const url = extractUrlFromPath(fileName);
-        const fileContent = `<script>window.open("${url}")</script>\n`;
+        const url = buildUrl(fileName);
         return Promise.resolve({
-            stream: string2fileStream(fileContent),
+            stream: string2fileStream(url),
             clientPath: fileName,
         });
     }

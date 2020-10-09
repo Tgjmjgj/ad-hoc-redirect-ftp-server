@@ -1,7 +1,7 @@
-const extractUrlFromPath = require('./utils');
+const buildUrl = require('./buildUrl');
 
 const getStat = path => {
-    const url = extractUrlFromPath(path);
+    const url = buildUrl(path);
     return {
         name: 'index.html',
         dev: 3405419068,
@@ -12,7 +12,7 @@ const getStat = path => {
         rdev: 0,
         blksize: 4096,
         ino: 3377699727276854,
-        size: 32 + url.length,
+        size: url.length,
         blocks: 0,
         atimeMs: Date.now(),
         mtimeMs: Date.now(),
