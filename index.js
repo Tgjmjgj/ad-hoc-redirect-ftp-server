@@ -9,6 +9,7 @@ const ftpServer = new FtpSrv({
     url: 'ftp://0.0.0.0:' + port,
     anonymous: true,
     pasv_url: 'ftp://0.0.0.0:' + port,
+    logLevel: 'trace',
 });
 
 ftpServer.on('login', (data, resolve, reject) => {
