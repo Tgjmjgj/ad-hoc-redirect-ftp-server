@@ -1,7 +1,7 @@
-const buildUrl = require('./buildUrl');
+const generateFile = require('./generateFile');
 
 const getStat = path => {
-    const url = buildUrl(path);
+    const fileContent = generateFile(path);
     return {
         name: 'index.html',
         dev: 3405419068,
@@ -12,7 +12,7 @@ const getStat = path => {
         rdev: 0,
         blksize: 4096,
         ino: 3377699727276854,
-        size: url.length,
+        size: fileContent.length,
         blocks: 0,
         atimeMs: Date.now(),
         mtimeMs: Date.now(),

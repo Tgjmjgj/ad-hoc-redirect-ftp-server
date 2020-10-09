@@ -1,6 +1,6 @@
 const path = require('path');
 const string2fileStream = require('string-to-file-stream');
-const buildUrl = require('./buildUrl');
+const generateFile = require('./generateFile');
 const getStat = require('./stat');
 
 class GenerativeFS {
@@ -37,9 +37,10 @@ class GenerativeFS {
     }
 
     read(fileName, { start = undefined } = {}) {
-        const url = buildUrl(fileName);
+        const fileContent = generateFile(fileName);
+        console.log('------ Send: ', fileContent);
         return Promise.resolve({
-            stream: string2fileStream(url),
+            stream: string2fileStream(fileContent),
             clientPath: fileName,
         });
     }
